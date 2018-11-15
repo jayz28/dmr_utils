@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#/usr/bin/env python
 #
 ###############################################################################
 #   Copyright (C) 2017 Mike Zingman N4IRR
@@ -114,9 +114,9 @@ def demodulateAmbe3600x2450(ambe_fr):
         foo = foo | ambe_fr[0][i]
     pr[0] = (16 * foo)
     for i in range(1, 24):
-        pr[i] = (173 * pr[i - 1]) + 13849 - (65536 * (((173 * pr[i - 1]) + 13849) / 65536))
+        pr[i] = (173 * pr[i - 1]) + 13849 - (65536 * (((173 * pr[i - 1]) + 13849) // 65536))
     for i in range(1, 24):
-        pr[i] = pr[i] / 32768
+        pr[i] = pr[i] // 32768
 
     # demodulate ambe_fr with pr
     k = 1
